@@ -1,0 +1,23 @@
+const app = require('../app')
+const http = require('http')
+const logger = require('../config/winstonlogger')
+
+
+app.set('port', process.env.PORT | 3000)
+
+const server = http.createServer(app)
+server.listen(process.env.PORT | 3000)
+
+
+server.on('error',(err)=>{
+    console.log(err)
+})
+
+server.on('listening',()=>{
+    const address = server.address()
+    const port = address.port
+    console.log("Server running on http://localhost:%s",port)
+})
+/*app.listen(3000,()=>{
+    console.log("http://127.0.0.1:3000")
+})*/
